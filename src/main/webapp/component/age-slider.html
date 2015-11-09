@@ -1,0 +1,21 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="age-slider">
+    <template>
+        This is <b>{{owner}}</b>'s age-slider.
+        <b>{{name}}</b> lets me borrow it.
+        He likes the color <span style="color: {{color}}">{{color}}</span>.
+        I am <b>{{age}}</b> years old.
+        <p>
+            <label for="ageInput">Age:</label>
+            <input id="ageInput" type="range" value="{{age}}">
+            <label for="nameInput">Name:</label>
+            <input id="nameInput" value="{{name}}" placeholder="Enter name...">
+            <button on-tap="randomName">Change name</button>
+        </p>
+    </template>
+    <script>
+        // try to put that in the GWT code
+        Polymer(jdramaix.AgeSlider.prototype);
+    </script>
+</dom-module>

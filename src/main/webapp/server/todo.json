@@ -1,0 +1,7 @@
+{
+    "todos": [
+        {"text": "learn JsInterop", "done": true},
+        {"text": "build a angular app with JsInterop", "done": true},
+         {"text": "Show DI example with HttpService", "done": false}
+    ]
+}
