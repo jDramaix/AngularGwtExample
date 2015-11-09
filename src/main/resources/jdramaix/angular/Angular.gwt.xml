@@ -4,8 +4,6 @@
 
     <entry-point class='jdramaix.angular.client.AngularApp' />
 
-    <add-linker name="direct_install" />
-
     <source path='client' />
 
     <set-property name="user.agent" value="safari"/>

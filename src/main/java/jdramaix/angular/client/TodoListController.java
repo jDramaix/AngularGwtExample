@@ -44,7 +44,4 @@ public class TodoListController {
                 todos.push(value);
         });
     }
-
-    ;
-
 }
