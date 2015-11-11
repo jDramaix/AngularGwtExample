@@ -2,23 +2,29 @@ package jdramaix.angular.client;
 
 
 import jdramaix.angular.client.api.JsArray;
+import jdramaix.angular.client.api.TodoDTO;
 import jdramaix.angular.client.api.http.HttpService;
+import jsinterop.annotations.JsIgnore;
+import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsType;
 
 import static jdramaix.angular.client.api.Angular.getAngular;
 
-@JsType(namespace = "jdramaix")
+@JsType
 public class TodoListController {
     private class SimpleCounter {
         int value = 0;
     }
 
-    public JsArray<Todo> todos;
+    public JsArray<Todo> todos = new JsArray<>();
     public String todoText = "";
 
+    @JsIgnore
     public TodoListController(HttpService http) {
-        http.<TodoArray>get("server/todo.json")
-                .success((TodoArray data) -> todos = data.todos);
+        http.get("server/todo.json").success((TodoArray data) -> {
+            for (TodoDTO dto : data.getTodos())
+               todos.push(new Todo(dto));
+        });
     }
 
     public void addTodo() {

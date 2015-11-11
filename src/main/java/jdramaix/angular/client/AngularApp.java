@@ -3,15 +3,12 @@ package jdramaix.angular.client;
 import com.google.gwt.core.client.EntryPoint;
 import jdramaix.angular.client.api.Angular;
 import jdramaix.angular.client.api.ControllerConstructor;
-import jdramaix.angular.client.api.Global;
-import jsinterop.annotations.JsMethod;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsProperty;
 
-/**
- * Created by dramaix on 11/7/15.
- */
 public class AngularApp implements EntryPoint {
-
-
+    @JsProperty(namespace = JsPackage.GLOBAL)
+    public static native Object getDocument();
 
     @Override
     public void onModuleLoad() {
@@ -21,7 +18,6 @@ public class AngularApp implements EntryPoint {
                 .controller("TodoListController",
                         new Object[]{"$http", (ControllerConstructor) TodoListController::new});
 
-
-        angular.bootstrap(Global.getDocument(), new String[]{"todoApp"});
+        angular.bootstrap(getDocument(), new String[]{"todoApp"});
     }
 }
