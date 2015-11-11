@@ -1,8 +1,8 @@
 package jdramaix.angular.client.api;
 
-import jsinterop.annotations.JsPackage;
-import jsinterop.annotations.JsProperty;
-import jsinterop.annotations.JsType;
+        import jsinterop.annotations.JsPackage;
+        import jsinterop.annotations.JsProperty;
+        import jsinterop.annotations.JsType;
 
 @JsType(isNative = true)
 public class Angular {
@@ -13,5 +13,5 @@ public class Angular {
 
     public native <T> void forEach(JsArray<T> obj, ForEachIterator<T> iterator);
 
-    public native void bootstrap(Object document, String[] module);
+    public native void bootstrap(Object element, String[] module);
 }
