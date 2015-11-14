@@ -4,11 +4,14 @@ target
 .project
 *.iml
 .settings
-.idea
 .classpath
 .gwt
 bin
 META-INF
 .DS_Store
 war
+.idea/*
+!.idea/runConfigurations
+build/
+.gradle/
 

@@ -1,0 +1,90 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'gwt'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+    }
+}
+
+repositories {
+    mavenCentral()
+    [
+            "https://plugins.gradle.org/m2/",
+            "http://oss.sonatype.org/content/repositories/snapshots",
+            "https://oss.sonatype.org/content/repositories/google-snapshots/"
+    ].each { address ->
+        maven {
+            url address
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/webapp'
+        }
+    }
+}
+
+
+compileJava{
+    options.incremental = true
+}
+
+def gwtVersion = '2.8.0-SNAPSHOT'
+def jettyVersion = '9.3.5.v20151012'
+
+
+dependencies {
+    compile "com.google.gwt:gwt-user:$gwtVersion"
+    compile "com.google.gwt:gwt-dev:$gwtVersion"
+    compile "org.eclipse.jetty:jetty-server:$jettyVersion"
+    compile "org.eclipse.jetty:jetty-servlet:$jettyVersion"
+}
+
+gradle.projectsEvaluated {
+    gwt {
+        gwtVersion = gwtVersion
+        modules 'jdramaix.angular.Angular'
+
+        gwtSuperDev {
+            bindAddress = '0.0.0.0'
+            args '-launcherDir'
+            args 'build/gwt/out'
+            args '-XjsInteropMode'
+            args 'JS_RC'
+        }
+        compileGwt {
+            args '-XjsInteropMode'
+            args 'JS_RC'
+        }
+        compiler {
+            enableClosureCompiler = true;
+            disableClassMetadata = true;
+            disableCastChecking = true;
+        }
+
+        minHeapSize = "1024M";
+        maxHeapSize = "2048M";
+        logLevel 'INFO'
+    }
+}
+
+
+task runServer(type: JavaExec, dependsOn: 'classes') {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'jdramaix.angular.server.RunServer'
+}

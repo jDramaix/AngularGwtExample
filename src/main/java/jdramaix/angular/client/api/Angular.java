@@ -1,8 +1,8 @@
 package jdramaix.angular.client.api;
 
-        import jsinterop.annotations.JsPackage;
-        import jsinterop.annotations.JsProperty;
-        import jsinterop.annotations.JsType;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsProperty;
+import jsinterop.annotations.JsType;
 
 @JsType(isNative = true)
 public class Angular {
